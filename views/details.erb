@@ -6,5 +6,19 @@
     <%= @row['ptext'] %>
   </br>
     Added at <%= @row['pdate'] %>
+</p>
+<h4>Comments:</h4>
+<p>
+  <form action ="/details<%= @row['id'] %>" method="POST" role="form">
 
-  </p>
+  <!--  <input name="title"  type="title" class="form-control" placeholder="email"></input>
+      </br>
+  -->
+      <textarea name="ctext" class="form-control" rows="3" placeholder="Post comment"></textarea>
+      </br>
+
+      <button type="submit" class="btn btn-info">Add comment</button>
+      </br>
+
+  </form>
+</p>
