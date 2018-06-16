@@ -1,28 +1,30 @@
-<h4>Post details:</h4>
+<ol><h3>Post details:</h3></ol>
+  <p>
+      <u>Title</u>: <%= @row['ptitle'] %>
+      </br>
+      <p><%= @row['ptext'] %></p>
+      Added at <%= @row['pdate'] %>
+  </p>
 </br>
-<p>
-    <u><%= @row['ptitle'] %></u>
-  </br>
-    <%= @row['ptext'] %>
-  </br>
-    Added at <%= @row['pdate'] %>
-</p>
-<h4>Comments:</h4>
+
+<ol><h4>Post comments:</h4></ol>
 <p>
 <% @comments.each do |comment| %>
   <b><%= comment['ctext'] %></b>
-  <i>Added at <%= comment['cdate'] %></i>
 </br>
+  <i>Added at <%= comment['cdate'] %></i>
+<hr>
 <% end %>
 </br>
 </p>
 <p>
+  <h4>Type your comment:</h4>
   <form action ="/details<%= @row['id'] %>" method="POST" role="form">
 
   <!--  <input name="title"  type="title" class="form-control" placeholder="email"></input>
       </br>
   -->
-      <textarea name="ctext" class="form-control" rows="3" placeholder="Post comment"></textarea>
+      <textarea name="ctext" class="form-control" rows="3" placeholder="Comment text"></textarea>
       </br>
 
       <button type="submit" class="btn btn-info">Add comment</button>
