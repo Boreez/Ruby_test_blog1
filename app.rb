@@ -7,8 +7,15 @@ require 'sqlite3'
 def init_db
 	@db = SQLite3::Database.new 'Blog1.db'
 	@db.results_as_hash = true
+	return @db
 end
 
+def errors fields, page
+		if fields.value?('')
+		@error = 'Enter data in all fields'
+  	end
+	return erb page
+end
 
 before do
 			init_db
@@ -35,10 +42,18 @@ end
 
 post '/new' do
 
+	ptitle = params[:title]
+	ptext = params[:text]
 
+#	if ptitle.length <= 0
+#		@error = 'Enter post title'
+#		if ptext.length <= 0
+#			@error << '</br> Enter post text'
+#		end
+#		return erb :new
+#	end
+errors params, :new
 
-	posttitle = params[:title]
-	posttext = params[:text]
+#	erb "<h3>Entered posts:</h3> </br> <h4><u>#{ptitle}</u></h4>#{ptext}"
 
-	erb "<h3>Entered posts:</h3> </br> <h4><u>#{posttitle}</u></h4>#{posttext}"
 end
