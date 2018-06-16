@@ -10,3 +10,10 @@ end
 get '/new' do
 	erb :new
 end
+
+post '/new' do
+	posttitle = params[:title]
+	posttext = params[:text]
+
+	erb "<h3>Entered posts:</h3> </br> <h4><u>#{posttitle}</u></h4>#{posttext}"
+end
