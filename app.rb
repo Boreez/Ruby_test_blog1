@@ -14,7 +14,16 @@ before do
 			init_db
 end
 
-
+configure do
+	init_db # тк before do не исполняется при конфигурации
+	@db.execute'create table if not exists "Posts"
+	(
+		"id" integer primary key autoincrement,
+		"ptitle" text,
+		"ptext" text,
+		"pdate" date
+	)'
+end
 
 get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
@@ -26,7 +35,7 @@ end
 
 post '/new' do
 
-	@db.
+
 
 	posttitle = params[:title]
 	posttext = params[:text]
