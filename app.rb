@@ -52,6 +52,9 @@ post '/new' do
 #		end
 #		return erb :new
 #	end
+
+	@db.execute 'insert into Posts (ptitle,ptext,pdate) values (?,?,datetime())', ptitle,ptext
+
 errors params, :new
 
 #	erb "<h3>Entered posts:</h3> </br> <h4><u>#{ptitle}</u></h4>#{ptext}"
