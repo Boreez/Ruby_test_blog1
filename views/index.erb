@@ -1,0 +1,15 @@
+<h2> All posts </h2>
+<hr>
+<% @results.each do |post| %>
+<p>
+      <u><%= post['ptitle'] %></u>
+    </br>
+      <%= post['ptext'] %>
+    </br>
+      Added at <%= post['pdate'] %>
+    </br>
+    <a href="/post<%= post['id'] %>">Comments</a>
+    </br>
+  </p>
+<hr>
+<% end %>

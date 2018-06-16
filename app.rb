@@ -10,12 +10,7 @@ def init_db
 	return @db
 end
 
-def errors fields, page
-		if fields.value?('')
-		@error = 'Enter data in all fields'
-  	end
-	return erb page
-end
+
 
 before do
 			init_db
@@ -33,7 +28,10 @@ configure do
 end
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
+
+	@results = @db.execute 'select * from Posts order by id desc'
+
+	erb :index
 end
 
 get '/new' do
@@ -45,17 +43,14 @@ post '/new' do
 	ptitle = params[:title]
 	ptext = params[:text]
 
-#	if ptitle.length <= 0
-#		@error = 'Enter post title'
-#		if ptext.length <= 0
-#			@error << '</br> Enter post text'
-#		end
-#		return erb :new
-#	end
+	if params.value?('')
+			@error = 'Enter data in all fields'
+	  return erb :new
+	end
 
 	@db.execute 'insert into Posts (ptitle,ptext,pdate) values (?,?,datetime())', ptitle,ptext
 
-errors params, :new
+	redirect to '/'
 
 #	erb "<h3>Entered posts:</h3> </br> <h4><u>#{ptitle}</u></h4>#{ptext}"
 
