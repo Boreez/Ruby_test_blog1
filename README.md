@@ -1,0 +1,1 @@
+# Ruby_test_blog1
